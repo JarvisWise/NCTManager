@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskmanager.controller.CalendarController">
+    <children>
+        <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="49.0" prefHeight="25.0" prefWidth="464.0">
+            <children>
+                <Label text="Calendar start" />
+                <DatePicker fx:id="calendarStartDateFiled" />
+                <Label text="(HH:MM)" />
+                <TextField fx:id="calendarStartTimeFiled" />
+            </children>
+        </HBox>
+        <Button layoutX="32.0" layoutY="138.0" mnemonicParsing="false" onAction="#onClickShowCalendarButton" text="Show Calendar" />
+        <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="97.0" prefHeight="25.0" prefWidth="464.0">
+            <children>
+                <Label text="Calendar end" />
+                <DatePicker fx:id="calendarEndDateFiled" />
+                <Label text="(HH:MM)" />
+                <TextField fx:id="calendarEndTimeFiled" />
+            </children>
+        </HBox>
+      <Button layoutX="144.0" layoutY="138.0" mnemonicParsing="false" onAction="#onClickCancelButton" text="Cancel" />
+      <ListView fx:id="calendarList" layoutX="31.0" layoutY="172.0" prefHeight="215.0" prefWidth="526.0" />
+    </children>
+</AnchorPane>
