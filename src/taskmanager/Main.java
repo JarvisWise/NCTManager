@@ -7,19 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import taskmanager.model.TaskManagerModel;
 
-import java.io.IOException;
-
 public class Main extends Application {
-
-    public static TaskManagerModel  model;
-
-    static {
-        try {
-            model = new TaskManagerModel();
-        } catch (IOException e) {
-            e.printStackTrace(); //
-        }
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -32,11 +20,11 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        super.stop();
         TaskManagerModel.log.info("TaskManager is stopped");
+        super.stop();
     }
 
     public static void main(String[] args) {
-        launch(args);
+            launch(args);
     }
 }

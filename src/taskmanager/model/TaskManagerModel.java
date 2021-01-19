@@ -1,19 +1,22 @@
 package taskmanager.model;
 
 import org.apache.log4j.Logger;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.SortedMap;
-
 import static taskmanager.model.Tasks.calendar;
 
 public class TaskManagerModel {
     public static final Logger log = Logger.getLogger(TaskManagerModel.class);
     private AbstractTaskList taskList;
     private File dataFile;
+
+    /**
+     * This Constructor initialize model for application
+     * @throws IOException problem with file system
+     */
 
     public TaskManagerModel() throws IOException {
         dataFile = new File(System.getProperty("user.dir") + "\\data.txt");
@@ -27,53 +30,98 @@ public class TaskManagerModel {
                     throw new IOException("File for saving data was not created!");
                 }
             } else {
-                readTaskListFromRes();
+                try {
+                    readTaskListFromRes();
+                } catch (IOException e) {
+                    log.fatal("Task list did not read correct, unexpected situation", e);
+                    throw new IOException("Task list did not read correct", e);
+                }
             }
         } catch (IOException e) {
-            throw new IOException("Exception at model part",e);
+            log.fatal("Problem with source data", e);
+            throw new IOException("Problem with source data",e);
         }
     }
+
+    /**
+     * Method for take taskList
+     * @return taskList
+     */
 
     public AbstractTaskList getTaskList() {
         return taskList;
     }
 
-    public SortedMap<LocalDateTime, Set<Task>> getCalendar(LocalDateTime start, LocalDateTime end) {
+    /**
+     * Method for form calendar for taskList
+     * @param start start time for calendar
+     * @param end end time for calendar
+     * @return formed calendar
+     */
 
-        // add check
+    public SortedMap<LocalDateTime, Set<Task>> getCalendar(LocalDateTime start, LocalDateTime end) {
         return calendar(taskList, start, end);
     }
+
+    /**
+     * Method for read taskList from dataFile
+     * @throws IOException problems with reading from file
+     */
 
     public void readTaskListFromRes() throws IOException {
         try {
             TaskIO.readText(taskList, dataFile);
         } catch (IOException e) {
             log.warn("Reading from file was failed", e);
-            throw new IOException(e);
+            throw new IOException("Reading from file was failed", e);
         }
     }
+
+    /**
+     * Method for write taskList to dataFile
+     * @throws IOException problems with writing to file
+     */
 
     public void writeTaskListFromRes() throws IOException {
         try {
             TaskIO.writeText(taskList, dataFile);
         } catch (IOException e) {
             log.warn("Writing to file was failed", e);
-            throw new IOException(e);
+            throw new IOException("Writing to file was failed", e);
         }
     }
 
-    public void addToTaskList(Task task) throws IOException {
-        if(task == null)
-            return;
+    /**
+     * Method for add task to taskList
+     * @param task task for add
+     * @throws IOException problems with writing to file
+     */
 
+    public void addToTaskList(Task task) throws IOException {
+        if(task == null) {
+            return;
+        }
         taskList.add(task);
         writeTaskListFromRes();
     }
+
+    /**
+     * Method for change value in taskList
+     * @param oldValue old value of task
+     * @param newValue new value of task
+     * @throws IOException problems with writing to file
+     */
 
     public void changeTask(Task oldValue, Task newValue) throws IOException {
         taskList.setTask(oldValue, newValue);
         writeTaskListFromRes();
     }
+
+    /**
+     * Method for delete task from taskList
+     * @param task task for remove
+     * @throws IOException problems with writing to file
+     */
 
     public void removeTask(Task task) throws IOException {
         taskList.remove(task);

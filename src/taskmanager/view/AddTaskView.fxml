@@ -27,7 +27,7 @@
             </opaqueInsets>
         </HBox>
         <CheckBox fx:id="checkActive" layoutX="20.0" layoutY="166.0" mnemonicParsing="false" text="Active" />
-        <CheckBox fx:id="checkRepeated" layoutX="20.0" layoutY="126.0" mnemonicParsing="false" onAction="#onChangedRepeated" text="Repeated" />
+        <CheckBox fx:id="checkRepeated" layoutX="21.0" layoutY="126.0" mnemonicParsing="false" onAction="#onChangedRepeated" text="Repeated" />
       <VBox fx:id="forRepeatedTask" layoutX="14.0" layoutY="193.0" prefHeight="99.0" prefWidth="504.0" visible="false">
          <children>
               <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="283.0">

@@ -1,19 +1,21 @@
 package taskmanager.controller;
 
-
-import javafx.event.ActionEvent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import taskmanager.Main;
-import taskmanager.model.Task;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import taskmanager.model.Task;
+import taskmanager.model.TaskManagerModel;
 
 public class EditTaskController {
     public TextField titleField;
@@ -25,19 +27,30 @@ public class EditTaskController {
     public TextField endTimeField;
     public TextField intervalField;
     public VBox forRepeatedTask;
-
-    private DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
-    private DateTimeFormatter formatterInterval = DateTimeFormatter.ofPattern("HH:mm:ss");
-
+    private static final DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter formatterInterval = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static Task selectedTask;
+
+    /**
+     * set value of task that will be edited or deleted
+     * @param st selected task in TaskManager Scene
+     */
 
     public static void setSelectedTask(Task st) {
         selectedTask = st;
     }
 
+    /**
+     * Initialize this scene
+     */
+
     public void initialize(){
         initTaskView();
     }
+
+    /**
+     * initialize all fields of this scene
+     */
 
     private void initTaskView() {
         if (selectedTask != null ) {
@@ -55,45 +68,126 @@ public class EditTaskController {
             } else {
                 forRepeatedTask.setVisible(false);
             }
+        } else {
+            TaskManagerModel.log.warn("unexpected open EditTaskController");
+            try {
+                Parent TaskManagerMenuParent = FXMLLoader.load(Controller.class.getResource("../view/TaskManagerMenuView.fxml"));
+                Scene TaskManagerMenuScene = new Scene(TaskManagerMenuParent);
+                Stage currentStage = (Stage)  intervalField.getScene().getWindow();
+                currentStage.setScene(TaskManagerMenuScene);
+            } catch (IOException e) {
+                TaskManagerModel.log.error("scene cannot be change", e);
+            }
         }
     }
 
-    public void onClickEditButton(ActionEvent actionEvent) throws IOException {
-        Task newTask;
-        String title = titleField.getText();
-        LocalDate startLocalDate = startDateField.getValue();
-        LocalTime startLocalTime = LocalTime.parse(startTimeField.getText(),formatterTime);
-        LocalDateTime startDateTime = startLocalDate.atTime(startLocalTime);
-        boolean isActive = checkActive.isSelected();
+     /**
+     * method react on edit button clicked, check all fields and change current task
+     * @param actionEvent current event
+     */
 
-        if (checkRepeated.isSelected()) {
+    public void onClickEditButton(ActionEvent actionEvent) {
+        Task newTask;
+        LocalDateTime startDateTime;
+
+        String title = titleField.getText();
+        if(titleField.getText().equals("")) {
+            Controller.showWarningAlert("Wrong input",
+                                 "Title field",
+                                 "Please enter the title");
+            return;
+        }
+
+        try {
+            LocalDate startLocalDate = startDateField.getValue();
+            LocalTime startLocalTime = LocalTime.parse(startTimeField.getText(),formatterTime);
+            startDateTime = startLocalDate.atTime(startLocalTime);
+        } catch (Exception e) {
+            Controller.showWarningAlert("Wrong input",
+                                 "Time Field",
+                                 "Please enter the start time correct");
+            return;
+        }
+
+        boolean isActive = checkActive.isSelected();
+        if (!checkRepeated.isSelected()) {
             newTask = new Task(title, startDateTime);
             newTask.setActive(isActive);
         } else {
-            LocalDate endLocalDate = endDateField.getValue();
-            LocalTime endLocalTime = LocalTime.parse(endTimeField.getText(),formatterTime);
-            LocalDateTime endDateTime = endLocalDate.atTime(endLocalTime);
-            int interval = (LocalTime.parse(intervalField.getText(),formatterInterval)).toSecondOfDay();
+            LocalDateTime endDateTime;
+            int interval;
+
+            try {
+                LocalDate endLocalDate = endDateField.getValue();
+                LocalTime endLocalTime = LocalTime.parse(endTimeField.getText(),formatterTime);
+                endDateTime = endLocalDate.atTime(endLocalTime);
+                interval = (LocalTime.parse(intervalField.getText(),formatterInterval)).toSecondOfDay();
+            } catch (Exception e) {
+                Controller.showWarningAlert("Wrong input",
+                                     "Time Field",
+                                     "Please enter the end time or interval correct");
+                return;
+            }
+
+            if (endDateTime.compareTo(startDateTime) < 0) {
+                Controller.showWarningAlert("Wrong input",
+                        "Start and end time",
+                        "Start time cannot be after end time");
+                return;
+            }
 
             newTask = new Task(title, startDateTime, endDateTime, interval);
             newTask.setActive(isActive);
         }
 
-        Main.model.changeTask(selectedTask, newTask);
+        try {
+            Controller.model.changeTask(selectedTask, newTask);
+        } catch (IOException e) {
+            Controller.showWarningAlert("File problem",
+                                 "Edit task",
+                                 "Problems with file system, task was not changed");
+            TaskManagerModel.log.warn("Task was not changed", e);
+            return;
+        }
         onClickCancelButton(actionEvent);
     }
 
-    public void onClickDeleteButton(ActionEvent actionEvent) throws IOException {
-        Main.model.removeTask(selectedTask);
+
+
+    /**
+     * method react on delete button clicked and delete current task
+     * @param actionEvent current event
+     */
+
+    public void onClickDeleteButton(ActionEvent actionEvent) {
+        try {
+        Controller.model.removeTask(selectedTask);
+        } catch (IOException e) {
+            Controller.showWarningAlert("File problem",
+                                 "Delete task",
+                                 "Problems with file system, task was not deleted");
+            TaskManagerModel.log.warn("Task was not deleted", e);
+            return;
+        }
         onClickCancelButton(actionEvent);
     }
 
-    public void onClickCancelButton(ActionEvent actionEvent) throws IOException {
+    /**
+     * This method change this scene on TaskManagerMenu
+     * @param actionEvent current event
+     */
 
+    public void onClickCancelButton(ActionEvent actionEvent) {
+        selectedTask = null;
         Controller.changeScene("../view/TaskManagerMenuView.fxml",actionEvent);
     }
 
-    public void onChangedRepeated(ActionEvent actionEvent) {
+    /**
+     * This method using for show and hide fields,
+     * that can be used for edit task
+     */
+
+    public void onChangedRepeated() {
         if(checkRepeated.isSelected()) {
             forRepeatedTask.setVisible(true);
         } else {

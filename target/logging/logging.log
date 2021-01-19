@@ -4,3 +4,110 @@
 2021-01-18 12:50:40 INFO  TaskManagerModel:36 - TaskManager is stopped
 2021-01-18 13:02:48 INFO  TaskManagerModel:30 - TaskManager is started
 2021-01-18 13:04:39 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-18 19:41:01 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-18 19:41:39 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-18 19:42:02 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-18 19:42:37 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-18 22:05:49 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-18 22:06:33 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-18 22:07:12 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-18 22:08:07 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-18 22:15:01 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-18 22:16:00 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-19 00:14:35 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-19 00:20:59 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-19 00:22:38 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-19 00:23:36 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-19 00:24:43 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-19 00:27:28 INFO  TaskManagerModel:30 - TaskManager is started
+2021-01-19 00:27:55 INFO  TaskManagerModel:36 - TaskManager is stopped
+2021-01-19 12:50:57 INFO  TaskManagerModel:18 - TaskManager is started
+2021-01-19 12:57:51 INFO  TaskManagerModel:23 - TaskManager is stopped
+2021-01-19 13:00:16 INFO  TaskManagerModel:20 - TaskManager is started
+2021-01-19 13:02:27 INFO  TaskManagerModel:20 - TaskManager is started
+2021-01-19 13:03:50 INFO  TaskManagerModel:25 - TaskManager is stopped
+2021-01-19 13:25:44 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 14:38:23 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 14:41:07 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 14:41:39 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 14:47:06 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 14:48:13 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 15:22:41 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 15:28:07 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 15:32:07 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 15:35:49 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 15:38:05 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 15:42:46 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 15:45:00 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 16:04:03 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 16:04:11 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 16:05:37 FATAL TaskManagerModel:29 - Fatal exception for application
+java.lang.Exception: test
+	at taskmanager.controller.Controller.<clinit>(Controller.java:27)
+	at taskmanager.controller.TaskManagerMenuController.initListView(TaskManagerMenuController.java:30)
+	at taskmanager.controller.TaskManagerMenuController.initialize(TaskManagerMenuController.java:17)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at javafx.base/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:83)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2591)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2466)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3253)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3210)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3179)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3152)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3129)
+	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:3122)
+	at taskmanager.Main.start(Main.java:15)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:919)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$11(PlatformImpl.java:449)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$9(PlatformImpl.java:418)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:417)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:175)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-01-19 16:06:02 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 16:06:02 INFO  TaskManagerModel:24 - TaskManager is stopped
+2021-01-19 16:08:31 FATAL TaskManagerModel:29 - Fatal exception for application
+java.lang.Exception: test
+	at taskmanager.controller.Controller.<clinit>(Controller.java:27)
+	at taskmanager.controller.TaskManagerMenuController.initListView(TaskManagerMenuController.java:30)
+	at taskmanager.controller.TaskManagerMenuController.initialize(TaskManagerMenuController.java:17)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at javafx.base/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:83)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2591)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2466)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3253)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3210)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3179)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3152)
+	at javafx.fxml/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:3129)
+	at javafx.fxml/javafx.fxml.FXMLLoader.load(FXMLLoader.java:3122)
+	at taskmanager.Main.start(Main.java:15)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:919)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$11(PlatformImpl.java:449)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$9(PlatformImpl.java:418)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:417)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:175)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-01-19 16:08:51 INFO  TaskManagerModel:19 - TaskManager is started
+2021-01-19 16:08:51 INFO  TaskManagerModel:24 - TaskManager is stopped

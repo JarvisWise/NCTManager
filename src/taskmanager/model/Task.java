@@ -189,6 +189,22 @@ public class Task implements Cloneable, Serializable {
                 + '}';
     }
 
+    public String showTask() {
+        String strTask;
+        if (interval == 0) {
+            strTask = "Title: " + title +
+                    " Time: " + start +
+                    " Active: " +  (active?"yes":"no")+"" ;
+        } else {
+            strTask = "Title: " + title
+                    + " Start: " + start
+                    + " End: " + end
+                    + " Interval (sec): " + interval
+                    + " Active: " + (active?"yes":"no");
+        }
+        return strTask;
+    }
+
     public Object clone() throws CloneNotSupportedException {
         Task clone = (Task) super.clone();
         clone.title = title;

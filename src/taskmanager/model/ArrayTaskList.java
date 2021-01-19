@@ -68,7 +68,7 @@ public class ArrayTaskList extends AbstractTaskList {
     public void setTask(Task oldValue, Task newValue) {
         if (oldValue != null || newValue != null) {
             int i = 0;
-            for(Task task: array) {
+            for(Task task: this) {
                 if (task.equals(oldValue)) {
                     array[i] = newValue;
                 }

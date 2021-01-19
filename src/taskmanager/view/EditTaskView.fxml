@@ -23,14 +23,14 @@
         <CheckBox fx:id="checkRepeated" layoutX="26.0" layoutY="117.0" mnemonicParsing="false" onAction="#onChangedRepeated" text="Repeated" />
         <VBox fx:id="forRepeatedTask" layoutX="14.0" layoutY="193.0" prefHeight="110.0" prefWidth="504.0">
         <children>
-            <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="194.0" prefHeight="25.0" prefWidth="440.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="440.0">
                 <children>
                     <Label text="End Time" />
                     <DatePicker fx:id="endDateField" />
                     <Label text="(HH:MM)" />
                     <TextField fx:id="endTimeField" prefHeight="25.0" prefWidth="150.0" />
             </children></HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="245.0" prefHeight="25.0" prefWidth="218.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="504.0">
                 <children>
                     <Label text="Interval" />
                     <TextField fx:id="intervalField" />
