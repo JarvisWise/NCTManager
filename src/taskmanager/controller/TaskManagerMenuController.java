@@ -50,7 +50,7 @@ public class TaskManagerMenuController {
         if (obsTaskList.size() != 0) {
             taskList.setItems(obsTaskList);
         } else {
-            taskList.getItems().add("No task yet");
+            taskList.getItems().add("No tasks yet");
         }
 
     }

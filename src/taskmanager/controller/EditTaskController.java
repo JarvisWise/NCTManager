@@ -69,14 +69,14 @@ public class EditTaskController {
                 forRepeatedTask.setVisible(false);
             }
         } else {
-            TaskManagerModel.log.warn("unexpected open EditTaskController");
+            TaskManagerModel.log.warn("Unexpected open EditTaskController, selectedTask must be not null");
             try {
                 Parent TaskManagerMenuParent = FXMLLoader.load(Controller.class.getResource("../view/TaskManagerMenuView.fxml"));
                 Scene TaskManagerMenuScene = new Scene(TaskManagerMenuParent);
                 Stage currentStage = (Stage)  intervalField.getScene().getWindow();
                 currentStage.setScene(TaskManagerMenuScene);
             } catch (IOException e) {
-                TaskManagerModel.log.error("scene cannot be change", e);
+                TaskManagerModel.log.error("Scene cannot be changed", e);
             }
         }
     }
@@ -146,7 +146,7 @@ public class EditTaskController {
             Controller.showWarningAlert("File problem",
                                  "Edit task",
                                  "Problems with file system, task was not changed");
-            TaskManagerModel.log.warn("Task was not changed", e);
+            TaskManagerModel.log.warn("The task has not been changed", e);
             return;
         }
         onClickCancelButton(actionEvent);
@@ -166,7 +166,7 @@ public class EditTaskController {
             Controller.showWarningAlert("File problem",
                                  "Delete task",
                                  "Problems with file system, task was not deleted");
-            TaskManagerModel.log.warn("Task was not deleted", e);
+            TaskManagerModel.log.warn("The task has not been deleted", e);
             return;
         }
         onClickCancelButton(actionEvent);

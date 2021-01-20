@@ -69,7 +69,14 @@ public class LinkedTaskList extends AbstractTaskList {
     }
 
     public void setTask(Task oldValue, Task newValue) {
-        // realize after
+        if (oldValue != null || newValue != null) {
+            for (NodeTask i = first; i != null; i = i.getNext()) {
+                if (i.getValue().equals(oldValue)) {
+                    i.setValue(newValue);
+                    return;
+                }
+            }
+        }
     }
 
     @Override
@@ -184,6 +191,10 @@ public class LinkedTaskList extends AbstractTaskList {
 
         public NodeTask getNext() {
             return next;
+        }
+
+        public void setValue(Task value) {
+            this.value = value;
         }
 
         public void setNext(NodeTask next) {

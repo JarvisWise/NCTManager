@@ -18,19 +18,19 @@ import java.util.SortedMap;
 public class Controller {
 
     public static TaskManagerModel  model;
+    public static boolean isInitialize = false;
 
     static {
         try {
             model = new TaskManagerModel();
             notificationStart();
-
-            throw new Exception("test");
+            isInitialize = true;
         } catch (Exception e) {
             TaskManagerModel.log.fatal("Fatal exception for application",e);
 
             Controller.showWarningAlert("Fatal Error",
-                    "System failed",
-                    "Sorry program initialization failed");
+                                        "System failed",
+                                        "Sorry program initialization failed");
             Platform.exit();
         }
     }
@@ -39,7 +39,6 @@ public class Controller {
      * This method change current scene on new scene
      * @param path path to scene that will be opened
      * @param event event of current stage
-     * @throws IOException
      */
 
     public static void changeScene(String path, Event event) {
@@ -49,7 +48,7 @@ public class Controller {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(TaskManagerMenuScene);
         } catch (IOException e) {
-            TaskManagerModel.log.error("scene cannot be change", e);
+            TaskManagerModel.log.error("Scene cannot be changed", e);
         }
     }
 
@@ -107,15 +106,12 @@ public class Controller {
                     }
 
                     StringBuilder finalStr = str;
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
+                    Platform.runLater(() ->
                             Controller.showAlert("Incoming tasks",
-                                    "Within a minute you need to complete the following tasks.",
-                                    "Tasks: "+ finalStr,
-                                    Alert.AlertType.INFORMATION);
-                        }
-                    });
+                            "Within a minute you need to complete the following tasks.",
+                            "Tasks: "+ finalStr,
+                            Alert.AlertType.INFORMATION)
+                    );
                 }
 
                 try {

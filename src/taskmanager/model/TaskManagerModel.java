@@ -24,16 +24,16 @@ public class TaskManagerModel {
         try {
             if (!dataFile.exists()) {
                 if(dataFile.createNewFile()) {
-                    log.info("File data.txt was created");
+                    log.info("data.txt file created");
                 } else {
-                    log.error("File data.txt  was not created");
-                    throw new IOException("File for saving data was not created!");
+                    log.error("data.txt file was not created");
+                    throw new IOException("File to save data was not created!");
                 }
             } else {
                 try {
                     readTaskListFromRes();
                 } catch (IOException e) {
-                    log.fatal("Task list did not read correct, unexpected situation", e);
+                    log.fatal("Task list did not read correct, an unexpected situation", e);
                     throw new IOException("Task list did not read correct", e);
                 }
             }
@@ -72,8 +72,8 @@ public class TaskManagerModel {
         try {
             TaskIO.readText(taskList, dataFile);
         } catch (IOException e) {
-            log.warn("Reading from file was failed", e);
-            throw new IOException("Reading from file was failed", e);
+            log.warn("Reading from file failed", e);
+            throw new IOException("Reading from file failed", e);
         }
     }
 
@@ -86,8 +86,8 @@ public class TaskManagerModel {
         try {
             TaskIO.writeText(taskList, dataFile);
         } catch (IOException e) {
-            log.warn("Writing to file was failed", e);
-            throw new IOException("Writing to file was failed", e);
+            log.warn("Writing to file failed", e);
+            throw new IOException("Writing to file failed", e);
         }
     }
 
